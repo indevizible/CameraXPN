@@ -140,11 +140,12 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
     }
     
     let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes:
-                                                                [.builtInWideAngleCamera],
+                                                                [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera],
                                                             mediaType: .video, position: .unspecified)
     
     func bestDevice(in position: AVCaptureDevice.Position) -> AVCaptureDevice {
         let devices = self.discoverySession.devices
+        print("devices", devices)
         guard !devices.isEmpty else { fatalError("Missing capture devices.")}
         
         return devices.first(where: { device in device.position == position })!
