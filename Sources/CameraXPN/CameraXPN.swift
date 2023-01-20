@@ -262,6 +262,15 @@ public struct CameraXPN: View {
                 
             }
             
+            if camera.isRecording {
+                Rectangle()
+                    .fill(.black)
+                    .frame(width: 20000, height: 20000, alignment: .center)
+                    .onTapGesture {
+                        camera.stopRecording()
+                    }
+            }
+            
         }.onAppear {
             camera.checkPermission()
             camera.checkAudioPermission()
