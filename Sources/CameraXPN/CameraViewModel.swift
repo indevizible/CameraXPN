@@ -23,7 +23,7 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
     @Published var isSaved: Bool = false
     @Published var mediaData = Data(count: 0)
     
-    @Published var video: Bool = false
+    @Published var video: Bool = true
     @Published var videoOutput = AVCaptureMovieFileOutput()
     
     @Published var isRecording: Bool = false

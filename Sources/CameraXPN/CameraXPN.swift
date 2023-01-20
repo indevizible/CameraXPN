@@ -229,11 +229,18 @@ public struct CameraXPN: View {
                         
                         Button {
                             
-                            if camera.video {
+                            if camera.isRecording {
+                                
                                 camera.stopRecording()
                                 // in the end of taking video -> camera.video need to become false again
                             } else {
-                                camera.takePic()
+                                if camera.recordPermission == .granted && videoAllowed{
+                                    withAnimation {
+                                        camera.video = true
+                                        camera.setUp()
+                                        camera.startRecordinng()
+                                    }
+                                }
                             }
                             
                         } label: {
@@ -248,17 +255,7 @@ public struct CameraXPN: View {
                                     .frame(width: camera.video ? 105 : 85, height: camera.video ? 105 : 85)
                             }
                             
-                        }.simultaneousGesture(
-                            LongPressGesture(minimumDuration: 0.5).onEnded({ value in
-                                if camera.recordPermission == .granted && videoAllowed{
-                                    withAnimation {
-                                        camera.video = true
-                                        camera.setUp()
-                                        camera.startRecordinng()
-                                    }
-                                }
-                            })
-                        ).buttonStyle(.plain)
+                        }.buttonStyle(.plain)
                     }
                 }.frame(height: 105)
                     .padding(.bottom)
