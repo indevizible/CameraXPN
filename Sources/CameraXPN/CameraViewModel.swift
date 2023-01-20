@@ -140,7 +140,7 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
     }
     
     let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes:
-                                                                [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera],
+                                                                [.builtInWideAngleCamera],
                                                             mediaType: .video, position: .unspecified)
     
     func bestDevice(in position: AVCaptureDevice.Position) -> AVCaptureDevice {
